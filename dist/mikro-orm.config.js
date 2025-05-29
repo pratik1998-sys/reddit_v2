@@ -3,12 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const postgresql_1 = require("@mikro-orm/postgresql");
 const Post_1 = require("./entities/Post");
 const constants_1 = require("./constants");
+const User_1 = require("./entities/User");
 exports.default = (0, postgresql_1.defineConfig)({
     migrations: {
         path: postgresql_1.Utils.detectTsNode() ? "src/migrations" : "dist/migrations",
         glob: "!(*.d).{js,ts}",
     },
-    entities: [Post_1.Post],
+    entities: [Post_1.Post, User_1.User],
     dbName: "reddit_v2",
     user: "postgres",
     password: "pratik@1998",

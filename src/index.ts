@@ -10,6 +10,7 @@ import { PostResolver } from "./resolvers/post";
 import { MyContext } from "./types";
 import { MikroORM } from "@mikro-orm/postgresql";
 import { buildSchema } from "type-graphql";
+import { UserResolver } from "./resolvers/user";
 
 const main = async () => {
   const orm = await MikroORM.init(ormConfig);
@@ -19,7 +20,7 @@ const main = async () => {
   const httpServer = http.createServer(app);
 
   const schema = await buildSchema({
-    resolvers: [PostResolver],
+    resolvers: [PostResolver, UserResolver],
     validate: false,
   });
 

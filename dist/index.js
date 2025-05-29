@@ -22,13 +22,14 @@ const express4_1 = require("@as-integrations/express4");
 const post_1 = require("./resolvers/post");
 const postgresql_1 = require("@mikro-orm/postgresql");
 const type_graphql_1 = require("type-graphql");
+const user_1 = require("./resolvers/user");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const orm = yield postgresql_1.MikroORM.init(mikro_orm_config_1.default);
     yield orm.getMigrator().up();
     const app = (0, express_1.default)();
     const httpServer = http_1.default.createServer(app);
     const schema = yield (0, type_graphql_1.buildSchema)({
-        resolvers: [post_1.PostResolver],
+        resolvers: [post_1.PostResolver, user_1.UserResolver],
         validate: false,
     });
     const apolloServer = new server_1.ApolloServer({
